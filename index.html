@@ -1,41 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Daily Task Manager</title>
     <meta name="description" content="A simple, elegant daily task manager.">
-    
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Stylesheet -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="app-container">
-        <header>
-            <h1>Daily Task Manager</h1>
+    <div class="page-wrapper">
+        <header class="main-header">
+            <div class="logo">Daily Task Manager</div>
+            <nav>
+                <a href="#app">Tasks</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="#feedback">Feedback</a>
+            </nav>
         </header>
-        
-        <form id="task-form" class="input-group">
-            <input type="text" id="task-input" placeholder="What needs to be done?" autocomplete="off" required>
-            <button type="submit" id="add-btn" aria-label="Add Task">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-            </button>
-        </form>
 
-        <ul id="task-list" class="task-list">
-            <!-- Tasks will be dynamically injected here via JavaScript -->
-        </ul>
+        <main>
+            <!-- Task Manager Section -->
+            <section id="app" class="app-section">
+                <div class="app-container">
+                    <header>
+                        <h1>My Tasks</h1>
+                    </header>
+                    <form id="task-form" class="input-group">
+                        <input type="text" id="task-input" placeholder="What needs to be done?" autocomplete="off"
+                            required>
+                        <button type="submit" id="add-btn" aria-label="Add Task">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </button>
+                    </form>
+                    <ul id="task-list" class="task-list"></ul>
+                </div>
+            </section>
+
+            <!-- About Us Section -->
+            <section id="about" class="content-section">
+                <div class="section-container">
+                    <h2>About Us</h2>
+                    <p>Welcome to <strong>Daily Task Manager</strong>! Our mission is to provide you with the cleanest,
+                        most efficient way to organize your day. We believe that a cluttered interface leads to a
+                        cluttered mind, which is why we've designed this tool to be as minimal, fast, and secure as
+                        possible.</p>
+                    <p>Everything is saved locally on your device, ensuring privacy and ease of use.</p>
+                </div>
+            </section>
+
+            <!-- Contact Us Section -->
+            <section id="contact" class="content-section">
+                <div class="section-container">
+                    <h2>Contact Us</h2>
+                    <p>Have a question or need support? We're here to help.</p>
+                    <ul class="contact-info">
+                        <li><strong>Email:</strong> support@dailytaskmanager.com</li>
+                        <li><strong>Phone:</strong> +91 9136248923</li>
+                        <li><strong>Address:</strong> 123 Productivity Way, Focus City, CA 90210</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Feedback Section -->
+            <section id="feedback" class="content-section">
+                <div class="section-container">
+                    <h2>Feedback</h2>
+                    <p>We're always looking to improve our tools. Let us know what you think!</p>
+                    <form id="feedback-form" class="feedback-form">
+                        <div class="form-group">
+                            <label for="feedback-name">Name</label>
+                            <input type="text" id="feedback-name" required placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="feedback-email">Email</label>
+                            <input type="email" id="feedback-email" required placeholder="Your email address">
+                        </div>
+                        <div class="form-group">
+                            <label for="feedback-message">Message</label>
+                            <textarea id="feedback-message" required
+                                placeholder="Your thoughts, suggestions, or issues..." rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Feedback</button>
+                        <p id="feedback-success" class="success-msg" style="display: none;">Thank you for your feedback!
+                        </p>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer / Social Media -->
+        <footer>
+            <div class="footer-content">
+                <div class="social-media">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Twitter">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="GitHub">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <p class="copyright">&copy; 2026 Daily Task Manager. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
-
-    <!-- Script -->
     <script src="script.js"></script>
 </body>
+
 </html>
