@@ -1,0 +1,267 @@
+/* Base and Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #ffffff; /* Requested White Background */
+    color: #111827;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 6vh 20px;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* App Container */
+.app-container {
+    width: 100%;
+    max-width: 500px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+header h1 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 32px;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: #000000;
+}
+
+/* Input Group */
+.input-group {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 16px 20px;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: #fafafa;
+}
+
+.input-group input:focus {
+    border-color: #111827;
+    background-color: #ffffff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.input-group input::placeholder {
+    color: #9ca3af;
+}
+
+.input-group button {
+    padding: 0 22px;
+    background-color: #111827;
+    color: #ffffff;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px rgba(17, 24, 39, 0.1);
+}
+
+.input-group button:hover {
+    background-color: #374151;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(17, 24, 39, 0.15);
+}
+
+.input-group button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(17, 24, 39, 0.1);
+}
+
+/* Task List */
+.task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Task Item */
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background-color: #ffffff;
+    border: 1px solid #f3f4f6;
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    animation: slideIn 0.4s ease-out forwards;
+    transform-origin: top center;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-15px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.task-item:hover {
+    border-color: #e5e7eb;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+}
+
+.task-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Checkbox */
+.checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+}
+
+.task-item.completed .checkbox {
+    background-color: #111827;
+    border-color: #111827;
+}
+
+.checkbox-icon {
+    opacity: 0;
+    transform: scale(0.3);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    color: white;
+    width: 14px;
+    height: 14px;
+}
+
+.task-item.completed .checkbox-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Task Text */
+.task-text {
+    font-size: 16px;
+    color: #374151;
+    transition: all 0.2s ease;
+    word-break: break-word;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.task-item.completed .task-text {
+    color: #9ca3af;
+    text-decoration: line-through;
+    font-weight: 400;
+}
+
+/* Delete Button */
+.delete-btn {
+    background: none;
+    border: none;
+    color: #d1d5db;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    opacity: 0; /* Hidden by default on desktop */
+}
+
+/* On desktop, show delete button on hover */
+@media (hover: hover) {
+    .task-item:hover .delete-btn {
+        opacity: 1;
+        color: #ef4444;
+    }
+}
+
+.delete-btn:hover {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.delete-btn:active {
+    transform: scale(0.9);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    color: #9ca3af;
+    margin-top: 40px;
+    font-size: 15px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Mobile Friendly Adjustments */
+@media (max-width: 480px) {
+    body { 
+        padding: 3vh 16px; 
+    }
+    
+    header h1 {
+        font-size: 28px;
+        margin-bottom: 24px;
+    }
+
+    .input-group { 
+        flex-direction: column; 
+        gap: 12px; 
+        margin-bottom: 32px;
+    }
+    
+    .input-group button { 
+        padding: 16px 20px; 
+        width: 100%;
+    }
+    
+    .input-group input { 
+        font-size: 16px; /* Prevents auto-zoom on iOS */ 
+    }
+    
+    .task-item {
+        padding: 14px 16px;
+    }
+
+    .delete-btn { 
+        opacity: 1; /* Always visible on mobile */
+        color: #ef4444; 
+        background-color: #fef2f2; 
+    }
+    
+    .task-item.completed .delete-btn {
+        background-color: transparent;
+        color: #d1d5db;
+    }
+}
