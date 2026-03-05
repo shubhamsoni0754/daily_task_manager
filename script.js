@@ -1,17 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ---- Todo List Logic ----
     const taskForm = document.getElementById('task-form');
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
 
-    // Load tasks from localStorage or initialize empty array
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-    // Save tasks to localStorage
     const saveTasks = () => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     };
 
-    // Render tasks to the DOM
     const renderTasks = () => {
         taskList.innerHTML = '';
 
@@ -50,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Add new task
     taskForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const text = taskInput.value.trim();
@@ -62,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 completed: false
             };
 
-            tasks.unshift(newTask); // Add to beginning of array
+            tasks.unshift(newTask);
             saveTasks();
             renderTasks();
             taskInput.value = '';
@@ -70,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Toggle task completion (Global scope so inline onclick can access it)
     window.toggleTask = (id) => {
         tasks = tasks.map(task => {
             if (task.id === id) {
@@ -82,12 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
         renderTasks();
     };
 
-    // Delete task (Global scope)
     window.deleteTask = (id) => {
         const taskElement = document.getElementById(`task-${id}`);
 
         if (taskElement) {
-            // Apply scale down animation before removing
             taskElement.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
             taskElement.style.transform = 'scale(0.95)';
             taskElement.style.opacity = '0';
@@ -96,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tasks = tasks.filter(task => task.id !== id);
                 saveTasks();
                 renderTasks();
-            }, 300); // Wait for transition duration
+            }, 300);
         } else {
             tasks = tasks.filter(task => task.id !== id);
             saveTasks();
@@ -104,13 +98,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Utility function to escape HTML and prevent XSS
     function escapeHTML(str) {
         const div = document.createElement('div');
         div.textContent = str;
         return div.innerHTML;
     }
 
-    // Initial render
     renderTasks();
+
+    // ---- Feedback Form Logic ----
+    const feedbackForm = document.getElementById('feedback-form');
+    const feedbackSuccess = document.getElementById('feedback-success');
+
+    if (feedbackForm) {
+        feedbackForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Show success message
+            feedbackSuccess.style.display = 'block';
+
+            // Reset form
+            feedbackForm.reset();
+
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                feedbackSuccess.style.display = 'none';
+
+                // Let the user know the feedback was submitted since there's no real backend
+                console.log("Feedback simulated submission to server.");
+            }, 3000);
+        });
+    }
 });
